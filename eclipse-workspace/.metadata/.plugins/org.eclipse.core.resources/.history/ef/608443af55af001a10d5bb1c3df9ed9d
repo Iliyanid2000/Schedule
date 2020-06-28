@@ -1,0 +1,114 @@
+import java.util.*;
+
+public class employee 
+{
+int priority;
+int[] hoursAvailable;
+String name;
+String[] WeekAvailability;
+static String[][] DaysWorking;
+char doubles;
+	employee(int priority,String name, int[] hoursAvailable, String[] WeekAvailability,char doubles)
+	{
+	this.priority = priority;
+	this.hoursAvailable = (hoursAvailable.length > 7) ? null : hoursAvailable;
+	this.WeekAvailability = (WeekAvailability.length > 7) ? null : WeekAvailability;
+	this.name = name;	
+	this.doubles = (doubles == 'y' || doubles == 'n') ? doubles : 'n';
+	DaysWorking = new String[7][(this.doubles == 'y') ? 2 : 1];
+	}
+
+	public String toString()
+	{
+		String total = "Name: " + name;
+		total += "\nhoursAvailable: " + Arrays.toString(hoursAvailable);
+		total += "\nWeek Availability: " + Arrays.toString(WeekAvailability);
+		total += "\nDoubles: " + doubles;
+		total += "\nPriority: " + priority + "\n\n";
+		
+		return total;		
+	}
+	
+	public boolean addDay(String day)
+	{
+		try
+		{
+		int dayWorking = convertDay(day);
+		for(int i = 0; i < DaysWorking[dayWorking].length; i++)
+			if(DaysWorking[dayWorking][i] == null)
+			{
+				DaysWorking[dayWorking][i] = day;
+				return true;
+			}
+		return false;
+		}
+		catch(Exception e)
+		{
+			System.err.println("Attempted to add Invalid Day: " + day);
+			return false;
+		}
+	}
+	
+	public boolean removeDay(String day, int shift)
+	{
+		try
+		{
+			int dayWorking = convertDay(day);
+			if(DaysWorking[dayWorking][shift] != null)
+			{
+				DaysWorking[dayWorking][shift] = null;
+				return true;
+			}
+			else
+				return false;
+		}
+		catch(Exception e)
+		{
+			System.err.println("Attempted to remove Invalid Day: " + day);
+			return false;
+		}
+	}
+	
+	public boolean worksDay(String day, int shift)
+	{
+		try
+		{
+			int dayWorking = convertDay(day);
+			if(DaysWorking[dayWorking][shift] == null)
+			{
+				return false;
+			}
+			return false;
+		}
+		catch(Exception e)
+		{
+			System.err.println("Attempted to find Invalid Day: " + day + " or shift: " + shift);
+			return false;
+		}
+	}
+	
+	private int convertDay(String day)
+	{
+		int dayWorking = -1;
+		switch(day)
+		{
+		case "M":  dayWorking = 0;
+			break;
+		case "T":  dayWorking = 1;
+			break;
+		case "W":  dayWorking = 2;
+			break;
+		case "TH": dayWorking = 3;
+			break;
+		case "F":  dayWorking = 4;
+			break;
+		case "SA": dayWorking = 5;
+			break;
+		case "SU": dayWorking = 6;
+			break;			
+		}
+		return dayWorking;
+	}
+	
+}
+
