@@ -27,7 +27,7 @@ public class Screate
 		{
 			System.out.print(totalEmployee);
 
-			for(int i = 0;i<shiftsAvailable.size();i++)
+			/*for(int i = 0;i<shiftsAvailable.size();i++)
 			{
 				System.out.println("Day: " + (i + 1));
 				for(int j = 0; j < shiftsAvailable.get(i).size();j++)
@@ -38,7 +38,7 @@ public class Screate
 						System.out.println("		Times: " + shiftsAvailable.get(i).get(k).get(k) + "\n\n");
 					}
 				}
-			}
+			}*/
 			
 			for(int i = 0; i < Schedule.size(); i++)
 			{
